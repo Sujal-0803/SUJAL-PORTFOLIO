@@ -1,0 +1,883 @@
+/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+/*===== VARIABLES CSS =====*/
+:root {
+  --header-height: 3rem;
+  --font-semi: 600;
+  /*===== Colores =====*/
+  /*Purple 260 - Red 355 - Blue 224 - Pink 340*/
+  /* HSL color mode */
+  --hue-color: 224;
+  /* --first-color: hsl(var(--hue-color), 89%, 60%); */
+  --first-color: rgb(154, 81, 222);
+  --second-color: hsl(var(--hue-color), 56%, 12%);
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --big-font-size: 2rem;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: 0.938rem;
+  --smaller-font-size: 0.75rem;
+  /*===== Margenes =====*/
+  --mb-2: 1rem;
+  --mb-4: 2rem;
+  --mb-5: 2.5rem;
+  --mb-6: 3rem;
+  /*===== z index =====*/
+  --z-back: -10;
+  --z-fixed: 100;
+}
+@media screen and (min-width: 968px) {
+  :root {
+    --big-font-size: 3.5rem;
+    --h2-font-size: 2rem;
+    --normal-font-size: 1rem;
+    --smaller-font-size: 0.875rem;
+  }
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  color: white;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/*===== CLASS CSS ===== */
+.section-title {
+  position: relative;
+  font-size: var(--h2-font-size);
+  color: var(--first-color);
+  margin-top: var(--mb-2);
+  margin-bottom: var(--mb-4);
+  text-align: center;
+}
+.section-title::after {
+  position: absolute;
+  content: "";
+  width: 64px;
+  height: 0.18rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 2rem;
+  background-color: var(--first-color);
+}
+
+.section {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+/*===== LAYOUT =====*/
+.bd-grid {
+  max-width: 1024px;
+  display: grid;
+  margin-left: var(--mb-2);
+  margin-right: var(--mb-2);
+}
+
+.l-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
+  background-color: #121212;
+  border: 2px solid rgb(154, 81, 222);
+  box-shadow: 0 0 15px rgb(154, 81, 222);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+/*===== NAV =====*/
+.nav {
+  height: var(--header-height);
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  font-weight: var(--font-semi);
+}
+
+.namelogo {
+  height: var(--header-height);
+  /* width: 250px;
+  height: auto;
+  margin-top: 10px; 
+  margin-left: 50px; */
+}
+.buttons {
+  display: flex;
+  /* align-items: center;
+  justify-content: center;
+  gap: 2rem; */
+  margin-left: 15px;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  width: 50px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  background-color: #121212;
+}
+.b1 {
+  margin-left: 5rem;
+}
+
+.nav__item {
+  margin-bottom: var(--mb-4);
+}
+.nav__link {
+  position: relative;
+  color: #fff;
+}
+.nav__link:hover {
+  position: relative;
+}
+.nav__link:hover::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0.18rem;
+  left: 0;
+  top: 2rem;
+  background-color: var(--first-color);
+}
+.nav__logo {
+  color: var(--second-color);
+}
+/* Basic styling for the toggle button */
+.nav__toggle {
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 999; /* Ensure it sits on top */
+}
+
+/* Hidden menu (default state) */
+.nav__menu {
+  position: fixed;
+  top: var(--header-height);
+  right: -100%;
+  width: 80%;
+  height: 100%;
+  background-color: var(--second-color);
+  padding: 2rem;
+  transition: 0.5s ease-in-out;
+}
+
+/* Menu displayed (when 'show' class is added) */
+.nav__menu.show {
+  right: 0;
+}
+
+/* Reset for larger screens */
+@media screen and (min-width: 768px) {
+  .nav__toggle {
+    display: none; /* Hide toggle on larger screens */
+  }
+
+  .nav__menu {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    background-color: transparent;
+    transition: none;
+    display: flex;
+    flex-direction: row; /* Inline display for larger screens */
+  }
+
+  .nav__menu.show {
+    right: auto; /* Reset for larger screens */
+  }
+}
+
+/* Menu link styling */
+.nav__link {
+  display: block;
+  color: white;
+  margin: 1rem 0;
+}
+
+/*Active menu*/
+.active-link::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0.18rem;
+  left: 0;
+  top: 2rem;
+  background-color: var(--first-color);
+}
+
+/*=== Show menu ===*/
+.show {
+  right: 0;
+}
+.l-main {
+  background-color: #121212;
+}
+/*===== HOME =====*/
+
+.home {
+  position: relative;
+  row-gap: 5rem;
+  padding: 4rem 0 5rem;
+}
+.home__data {
+  align-self: center;
+}
+.home__title {
+  font-size: var(--big-font-size);
+  margin-bottom: var(--mb-5);
+}
+.home__title-color {
+  color: rgb(154, 81, 222);
+}
+.home__social {
+  display: flex;
+  flex-direction: column;
+  color: rgb(154, 81, 222);
+  gap: 2rem;
+}
+.home__social-icon {
+  width: max-content;
+  margin-bottom: var(--mb-2);
+  font-size: 1.5rem;
+  color: rgb(154, 81, 222);
+}
+.home__social-icon:hover {
+  color: var(--first-color);
+}
+.home__img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 260px;
+}
+.home__blob {
+  fill: var(--first-color);
+}
+.home__blob-img {
+  width: 360px;
+}
+
+/*BUTTONS*/
+.button {
+  display: inline-block;
+  background-color: var(--first-color);
+  color: #fff;
+  padding: 0.75rem 2.5rem;
+  font-weight: var(--font-semi);
+  border-radius: 0.5rem;
+  transition: 0.3s;
+}
+.button:hover {
+  box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== ABOUT =====*/
+.about__container {
+  row-gap: 2rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.about__subtitle {
+  margin-bottom: var(--mb-2);
+}
+.about__img {
+  justify-self: center;
+}
+.about__img img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+/* ===== SKILLS =====*/
+.skills__container {
+  row-gap: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.skills__subtitle {
+  margin-bottom: var(--mb-2);
+}
+.skills__text {
+  margin-bottom: var(--mb-4);
+}
+.skills__data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-weight: var(--font-semi);
+  padding: 0.5rem 1rem;
+  margin-bottom: var(--mb-4);
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 25px rgb(154, 81, 222);
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.skills__icon {
+  font-size: 2rem;
+  margin-right: var(--mb-2);
+  color: var(--first-color);
+}
+.skills__names {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+/* 
+.skills__bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--first-color);
+  height: 0.25rem;
+  border-radius: 0.5rem;
+  z-index: var(--z-back);
+}
+.skills__html {
+  width: 95%;
+}
+.skills__css {
+  width: 85%;
+}
+.skills__js {
+  width: 65%;
+}
+.skills__ux {
+  width: 85%;
+}
+.skills__img {
+  border-radius: 0.5rem;
+} */
+/* --------------- */
+.squares {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.square {
+  border: px solid #9a51de;
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 650;
+  padding: 5px;
+  text-align: center;
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 50px;
+  background-color: #f0f0f0;
+  margin: 10px;
+}
+.square:hover {
+  box-shadow: 5px 5px 15px #9a51de;
+}
+/* .s1 {
+  position: relative;
+  right: 65px;
+  bottom: 55px;
+}
+.s2 {
+  position: relative;
+  left: 60px;
+  bottom: 119px;
+} */
+.s1,
+.s2 {
+  position: static; /* Removed relative positioning to align squares in one row */
+}
+/* .langimg {
+  display: block;
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+}
+.langimg2 {
+  display: block;
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+} */
+.langimg,
+.langimg2,
+.langimg3 {
+  display: block;
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+}
+.langname {
+  margin: 0px 0px 0px 7px;
+}
+/* ----------------------- */
+
+/* ===== WORK =====*/
+.work__container {
+  row-gap: 2rem;
+}
+.work__img {
+  box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.work__img img {
+  transition: 1s;
+}
+.work__img img:hover {
+  transform: scale(1.1);
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.box1,
+.box2,
+.box3 {
+  background-color: #121212;
+  width: 98%;
+  max-height: 250px; /* Initial max-height, adjust as needed */
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: -1px 0px 20px 6px rgb(154, 81, 222);
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  color: white;
+}
+
+.content {
+  /* Ensure this is enough to contain your content */
+  height: auto;
+}
+
+.box1:hover,
+.box2:hover {
+  max-height: 500px; /* Max height on hover, adjust to fit content */
+}
+.box3:hover {
+  max-height: 800px;
+}
+.box-body {
+  text-align: justify;
+}
+.box-skills {
+  text-align: center;
+}
+
+.boximg {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  border-radius: 18px;
+}
+
+.header,
+#collagename {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#collagename {
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+#branch {
+  font-size: 14px;
+}
+/* ===== CONTACT =====*/
+.contact__input {
+  width: 100%;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1.5px solid var(--second-color);
+  outline: none;
+  margin-bottom: var(--mb-4);
+}
+.contact__button {
+  display: block;
+  border: none;
+  outline: none;
+  font-size: var(--normal-font-size);
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* ===== FOOTER =====*/
+.footer {
+  background-color: var(--second-color);
+  color: #fff;
+  text-align: center;
+  font-weight: var(--font-semi);
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: justify;
+}
+.footer__title {
+  font-size: 2rem;
+  margin-bottom: var(--mb-4);
+}
+.footer__social {
+  margin-bottom: var(--mb-4);
+}
+.footer__icon {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0 var(--mb-2);
+}
+.footer__copy {
+  font-size: var(--smaller-font-size);
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer {
+  background-color: #333333;
+  padding: 40px 0;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.footer div {
+  flex: 1;
+  margin: 10px;
+  min-width: 200px;
+}
+.footer h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+.footer p {
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+.footer .contact-info p,
+.footer .contact-form label {
+  margin-bottom: 10px;
+  display: block;
+}
+.footer .contact-form input,
+.footer .contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.footer .contact-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.footer .contact-form button:hover {
+  background-color: #0056b3;
+}
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.social-icons a i {
+  font-size: 25px; /* Adjust the size of the icon if needed */
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.social-icons a i:hover {
+  color: #9a51de;
+  transform: scale(1.5);
+}
+
+.fonts {
+  font-size: 1rem;
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.contact-info h2 {
+  margin-bottom: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.contact-item i {
+  font-size: 1.5rem;
+}
+
+.contact-item p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.skills__container {
+  display: flex;
+  flex-direction: column;
+}
+.home__social-icon {
+  margin-bottom: 0;
+  margin-right: var(--mb-4);
+  color: #9a51de;
+  font-size: 2rem;
+  border: 2px solid #9a51de;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* for the project section and the scroll up button */
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Poppins", sans-serif;
+}
+/*<---------------------------------------Body styling----------------------------------------------> */
+body {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  font-family: "Poppins", sans-serif;
+  background-color: #121212;
+  color: #fff;
+}
+/*<---------------------------------------Navbar styling----------------------------------------------> */
+
+.namelogo {
+  width: 200px;
+  height: 60px;
+}
+.btn {
+  width: 150px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: #9a51de;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  font-size: 1rem;
+  font-weight: 650;
+  padding: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
+}
+.btn:hover {
+  transform: scale(1.1); /* Button grows when hovered */
+}
+
+.boximg {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  border-radius: 18px;
+}
+
+.fifthSection {
+  height: 100%;
+  margin-bottom: 100px;
+}
+.fifthSection h1 {
+  font-size: 2.5rem;
+  color: white;
+}
+.bigbox {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.smallbox {
+  background-color: #121212;
+  width: 300px;
+  height: 260px;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: -1px 0px 20px 6px rgb(154, 81, 222);
+  margin: 20px;
+}
+.smallbox1 {
+  margin: 20px 50px 0px 80px;
+}
+.smallbox2 {
+  margin: 20px 50px 0px 100px;
+}
+.view {
+  color: white;
+  background-color: #c597f0;
+  border: 2px solid black;
+  font-size: 12px;
+  padding: 3px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.view:hover {
+  background-color: #9a51de;
+}
+
+/* for the button of scrolling to top */
+#scrollToTopBtn {
+  height: 50px;
+  width: 50px;
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed position */
+  bottom: 20px; /* Place the button 20px from the bottom */
+  right: 10px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #9a51de; /* Set background color */
+  box-shadow: -1px 0px 20px 6px rgb(154, 81, 222);
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 50%; /* Rounded corners */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#scrollToTopBtn:hover {
+  background-color: #333; /* Add a dark-grey background on hover */
+}
+
+/* for scrolling button */
+.marquee {
+  overflow: hidden;
+  position: relative;
+  height: 24px; /* height of the button text */
+  width: 18px; /* width of the button text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: black;
+}
+.marquee span {
+  display: block;
+  position: absolute;
+  bottom: -100%; /* Initially place the text below the button */
+  animation: marquee 1.5s linear infinite; /* Increase speed by decreasing the duration */
+}
+@keyframes marquee {
+  from {
+    bottom: -100%;
+  }
+  to {
+    bottom: 100%;
+  }
+}
+/* it is for loader for contact form */
+.loader {
+  position: relative;
+  width: 80px; /* Adjust size if needed */
+  height: 80px; /* Adjust size if needed */
+  margin: 20px auto;
+  text-align: center; /* Center the GIF */
+}
+
+.loader img {
+  position: fixed;
+  bottom: 230px;
+  right: 215px;
+  width: 5%;
+  height: 10%;
+}
